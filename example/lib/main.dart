@@ -66,6 +66,7 @@ class _MyAppState extends State<MyApp> {
                       title: "Click me!",
                       backgroundColor: Colors.blue,
                       titleTextStyle: const TextStyle(color: Colors.white),
+                      loadingColor: Colors.brown,
                       onTap: (){},
                     ),
                   ),
@@ -77,6 +78,7 @@ class _MyAppState extends State<MyApp> {
                       borderRadius: BorderRadius.circular(8),
                       icon: const Icon(Icons.favorite, size: 16,),
                       iconPosition: IconPosition.left,
+                      loadingColor: Colors.pink,
                       onTap: (){}, 
                     ),
                   ),
@@ -87,6 +89,7 @@ class _MyAppState extends State<MyApp> {
                       title: "Click me!", 
                       icon: const Icon(Icons.favorite, color: Colors.green,),
                       iconPosition: IconPosition.right,
+                      loadingColor: Colors.cyan,
                       onTap: (){}, 
                     ),
                   ),
@@ -169,41 +172,60 @@ class _MyAppState extends State<MyApp> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(children: [
-                      ButtonCustomizeWidget(
-                        isLoading: _isLoading,
-                        backgroundColor: Colors.grey[200],
-                        icon: const Icon(Icons.star, color: Colors.amber,),
-                        onTap: (){},
+                    child: Center(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                        ButtonCustomizeWidget(
+                          isLoading: _isLoading,
+                          backgroundColor: Colors.grey[200],
+                          icon: const Icon(Icons.star, color: Colors.amber,),
+                          onTap: (){},
+                        ),
+                        const SizedBox(width: 16,),
+                        ButtonCustomizeWidget(
+                          isLoading: _isLoading,
+                          icon: const Icon(Icons.info),
+                          loadingColor: Colors.orange,
+                          onTap: (){
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          },
+                        ),
+                        const SizedBox(width: 16,),
+                        ButtonCustomizeWidget(
+                          isLoading: _isLoading,
+                          width: 44,
+                          borderRadius: BorderRadius.circular(8),
+                          icon: const Icon(Icons.info),
+                          onTap: (){
+                            setState(() {
+                              _isLoading = true;
+                            });
+                          },
+                        )
+                      ],
                       ),
-                      const SizedBox(width: 16,),
-                      ButtonCustomizeWidget(
+                    ),
+                  ),
+                  const SizedBox(height: 16,),
+                  Center(
+                    child: ButtonCustomizeWidget(
                         isLoading: _isLoading,
                         icon: const Icon(Icons.info),
                         loadingColor: Colors.orange,
+                        iconPosition: IconPosition.center,
                         onTap: (){
                           setState(() {
                             _isLoading = false;
                           });
                         },
                       ),
-                      const SizedBox(width: 16,),
-                      ButtonCustomizeWidget(
-                        isLoading: _isLoading,
-                        width: 44,
-                        borderRadius: BorderRadius.circular(8),
-                        icon: const Icon(Icons.info),
-                        onTap: (){
-                          setState(() {
-                            _isLoading = true;
-                          });
-                        },
-                      )
-                    ],
-                    ),
-                  ),
+                  )
                 ],
               ),
+              const SizedBox(height: 32,),
             ],
           ),
         ),

@@ -260,7 +260,7 @@ class _WidgetState extends State<ButtonCustomizeWidget> with SingleTickerProvide
             ),
             onPressed: widget.onTap, child: Center(
                 child: Center(
-                  child: widget.width <= widget.height * 2 ? Stack(
+                  child: widget.width <= widget.height * 2 || widget.iconPosition == IconPosition.center ? Stack(
                     children: [
                       Center(child: widget.icon!),
                       if (widget.isLoading) ... [
